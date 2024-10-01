@@ -16,7 +16,7 @@ ThisBuild / developers := List(
 )
 ThisBuild / description := "Contraband is a description language for your datatypes and APIs, currently targeting Java and Scala."
 Global / semanticdbEnabled := true
-Global / semanticdbVersion := "4.4.32"
+Global / semanticdbVersion := "4.10.1"
 
 lazy val root = (project in file("."))
   .enablePlugins(TravisSitePlugin)
