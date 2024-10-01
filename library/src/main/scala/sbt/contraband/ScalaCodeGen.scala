@@ -258,9 +258,9 @@ class ScalaCodeGen(
         case _ if allFields exists (_.fieldType.isLazyType) =>
           s"super.hashCode // Avoid evaluating lazy members in hashCode to avoid circularity."
         case "Scala" =>
-          (seed /: allFields) { (acc, f) => s"37 * ($acc + ${bq(f.name)}.##)" }
+          allFields.foldLeft(seed) { (acc, f) => s"37 * ($acc + ${bq(f.name)}.##)" }
         case _ =>
-          (seed /: allFields) { (acc, f) => s"37 * ($acc +  ${genJavaHashCode(f, bq(f.name), false)})" }
+          allFields.foldLeft(seed) { (acc, f) => s"37 * ($acc +  ${genJavaHashCode(f, bq(f.name), false)})" }
       }
 
     s"""override def hashCode: Int = {

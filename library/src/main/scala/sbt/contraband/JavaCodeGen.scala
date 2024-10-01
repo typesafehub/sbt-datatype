@@ -381,7 +381,7 @@ class JavaCodeGen(
       ) {
         "return super.hashCode(); // Avoid evaluating lazy members in hashCode to avoid circularity."
       } else {
-        val computation = (seed /: allFields) { (acc, f) =>
+        val computation = allFields.foldLeft(seed) { (acc, f) =>
           val h = genJavaHashCode(f, s"${f.name}()", true)
           s"37 * ($acc + $h)"
         }
