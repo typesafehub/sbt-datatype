@@ -100,7 +100,7 @@ final class SimpleGreeting private (
   override def toString: String = {
     "SimpleGreeting(" + message + ", " + s + ")"
   }
-  private[this] def copy(message: String = message, s: java.util.Optional[String] = s): SimpleGreeting = {
+  private def copy(message: String = message, s: java.util.Optional[String] = s): SimpleGreeting = {
     new SimpleGreeting(message, s)
   }
   def withMessage(message: String): SimpleGreeting = {

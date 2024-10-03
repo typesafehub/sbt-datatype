@@ -21,7 +21,7 @@ final class VersionNumber private[sbt] (val numbers: Seq[Long], val tags: Seq[St
   def >=(o: VersionNumber)(implicit ord: Ordering[VersionNumber]): Boolean =
     ord.compare(this, o) >= 0
 
-  private[this] val versionStr: String =
+  private val versionStr: String =
     numbers.mkString(".") +
       (tags match {
         case Seq() => ""

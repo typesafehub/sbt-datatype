@@ -476,7 +476,7 @@ final class SimpleGreeting private (
   override def toString: String = {
     super.toString // Avoid evaluating lazy members in toString to avoid circularity.
   }
-  private[this] def copy(message: => String = message, header: com.example.GreetingHeader = header): SimpleGreeting = {
+  private def copy(message: => String = message, header: com.example.GreetingHeader = header): SimpleGreeting = {
     new SimpleGreeting(message, header)
   }
   def withMessage(message: => String): SimpleGreeting = {
@@ -532,7 +532,7 @@ final class GreetingExtraImpl private (
   override def toString: String = {
     return "Welcome, extra implosion!";
   }
-  private[this] def copy(message: com.example.Lazy[String] = message, header: com.example.GreetingHeader = header, extra: Array[String] = extra, x: String = x): GreetingExtraImpl = {
+  private def copy(message: com.example.Lazy[String] = message, header: com.example.GreetingHeader = header, extra: Array[String] = extra, x: String = x): GreetingExtraImpl = {
     new GreetingExtraImpl(message, header, extra, x)
   }
   def withMessage(message: com.example.Lazy[String]): GreetingExtraImpl = {
@@ -576,7 +576,7 @@ final class GreetingWithAttachments private (
   override def toString: String = {
     super.toString // Avoid evaluating lazy members in toString to avoid circularity.
   }
-  private[this] def copy(message: => String = message, header: com.example.GreetingHeader = header, attachments: Vector[java.io.File] = attachments): GreetingWithAttachments = {
+  private def copy(message: => String = message, header: com.example.GreetingHeader = header, attachments: Vector[java.io.File] = attachments): GreetingWithAttachments = {
     new GreetingWithAttachments(message, header, attachments)
   }
   def withMessage(message: => String): GreetingWithAttachments = {
@@ -617,7 +617,7 @@ final class GreetingHeader private (
   override def toString: String = {
     super.toString // Avoid evaluating lazy members in toString to avoid circularity.
   }
-  private[this] def copy(created: => java.util.Date = created, priority: com.example.PriorityLevel = priority, author: String = author): GreetingHeader = {
+  private def copy(created: => java.util.Date = created, priority: com.example.PriorityLevel = priority, author: String = author): GreetingHeader = {
     new GreetingHeader(created, priority, author)
   }
   def withCreated(created: => java.util.Date): GreetingHeader = {
