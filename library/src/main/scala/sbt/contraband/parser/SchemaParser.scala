@@ -5,7 +5,7 @@ import org.parboiled2._
 import CharPredicate.{ HexDigit, Digit19, AlphaNum }
 import scala.util.{ Failure, Success, Try }
 
-trait Tokens extends StringBuilding with PositionTracking { this: Parser with Ignored =>
+trait Tokens extends StringBuilding with PositionTracking { this: Parser & Ignored =>
 
   def Token = rule { Punctuator | Name | NumberValue | StringValue }
 
@@ -153,14 +153,7 @@ trait Ignored extends PositionTracking { this: Parser =>
 }
 
 trait Document {
-  this: Parser
-    with Values
-    with Operations
-    with Types
-    with Tokens /* with Operations*/
-    with Ignored /*with Fragments with Operations with Values*/
-    with Directives
-    with TypeSystemDefinitions =>
+  this: Parser & Values & Operations & Types & Tokens & Ignored & Directives & TypeSystemDefinitions =>
 
   def `package` = rule { Keyword("package") }
 
@@ -183,7 +176,7 @@ trait Document {
 }
 
 trait TypeSystemDefinitions {
-  this: Parser with Tokens with Ignored with Directives with Types with Operations with Values /*with Fragments*/ =>
+  this: Parser & Tokens & Ignored & Directives & Types & Operations & Values =>
 
   def scalar = rule { Keyword("scalar") }
   def `type` = rule { Keyword("type") }
@@ -304,7 +297,7 @@ trait TypeSystemDefinitions {
 }
 
 trait Operations extends PositionTracking {
-  this: Parser with Tokens with Ignored /*with Fragments*/ with Values with Types with Directives =>
+  this: Parser & Tokens & Ignored & Values & Types & Directives =>
 
   // def OperationDefinition = rule {
   //   Comments ~ trackPos ~ SelectionSet ~> ((comment, pos, s) => ast.OperationDefinition(selections = s._1, comments = comment, trailingComments = s._2, position = Some(pos))) |
@@ -360,7 +353,7 @@ trait Operations extends PositionTracking {
   }
 }
 
-trait Values { this: Parser with Tokens with Ignored with Operations with Types with Directives =>
+trait Values { this: Parser & Tokens & Ignored & Operations & Types & Directives =>
 
   def ValueConst: Rule1[ast.Value] = rule {
     NumberValue | RawValue | StringValue | BooleanValue | NullValue | EnumValue | ListValueConst | ObjectValueConst
@@ -439,7 +432,7 @@ trait Values { this: Parser with Tokens with Ignored with Operations with Types 
 }
 
 trait Directives {
-  this: Parser with Tokens with Operations with Ignored with Values with Operations with Types =>
+  this: Parser & Tokens & Operations & Ignored & Values & Operations & Types =>
 
   def Directives = rule { Directive.+ ~> (_.toList) }
 
@@ -450,7 +443,7 @@ trait Directives {
 
 }
 
-trait Types { this: Parser with Tokens with Ignored =>
+trait Types { this: Parser & Tokens & Ignored =>
   def `lazy` = rule { Keyword("lazy") }
 
   def Type: Rule1[ast.Type] = rule { LazyType | NonNullType | ListType | NamedType }
