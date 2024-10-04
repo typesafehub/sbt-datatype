@@ -52,7 +52,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "TypeExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: Option[java.net.URL] = field): TypeExample = {
+        |  private def copy(field: Option[java.net.URL] = field): TypeExample = {
         |    new TypeExample(field)
         |  }
         |  def withField(field: Option[java.net.URL]): TypeExample = {
@@ -92,7 +92,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "TypeExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: Option[java.net.URL] = field): TypeExample = {
+        |  private def copy(field: Option[java.net.URL] = field): TypeExample = {
         |    new TypeExample(field)
         |  }
         |  def withField(field: Option[java.net.URL]): TypeExample = {
@@ -129,7 +129,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "TypeExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: scala.collection.immutable.Map[String, String] = field): TypeExample = {
+        |  private def copy(field: scala.collection.immutable.Map[String, String] = field): TypeExample = {
         |    new TypeExample(field)
         |  }
         |  def withField(field: scala.collection.immutable.Map[String, String]): TypeExample = {
@@ -163,7 +163,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "Growable(" + field + ")"
         |  }
-        |  private[this] def copy(field: Option[Int] = field): Growable = {
+        |  private def copy(field: Option[Int] = field): Growable = {
         |    new Growable(field)
         |  }
         |  def withField(field: Option[Int]): Growable = {
@@ -205,7 +205,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "Foo(" + x + ", " + y + ")"
         |  }
-        |  private[this] def copy(x: Option[Int] = x, y: Vector[Int] = y): Foo = {
+        |  private def copy(x: Option[Int] = x, y: Vector[Int] = y): Foo = {
         |    new Foo(x, y)
         |  }
         |  def withX(x: Option[Int]): Foo = {
@@ -249,7 +249,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "ModifierExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: Int = field): ModifierExample = {
+        |  private def copy(field: Int = field): ModifierExample = {
         |    new ModifierExample(field)
         |  }
         |  def withField(field: Int): ModifierExample = {
@@ -299,7 +299,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
         |  override def toString: String = {
         |    "ChildType(" + name + ", " + field + ")"
         |  }
-        |  private[this] def copy(name: Option[String] = name, field: Option[Int] = field): ChildType = {
+        |  private def copy(name: Option[String] = name, field: Option[Int] = field): ChildType = {
         |    new ChildType(name, field)
         |  }
         |  def withName(name: Option[String]): ChildType = {

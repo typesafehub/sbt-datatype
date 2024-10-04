@@ -81,7 +81,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
         |  override def toString: String = {
         |    "childRecord(" + field + ", " + x + ")"
         |  }
-        |  private[this] def copy(field: Int = field, x: Int = x): childRecord = {
+        |  private def copy(field: Int = field, x: Int = x): childRecord = {
         |    new childRecord(field, x)
         |  }
         |  def withField(field: Int): childRecord = {
@@ -145,7 +145,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
         |  override def toString: String = {
         |    "ChildRecord()"
         |  }
-        |  private[this] def copy(): ChildRecord = {
+        |  private def copy(): ChildRecord = {
         |    new ChildRecord()
         |  }
         |}
@@ -204,7 +204,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
         |  override def toString: String = {
         |    "simpleRecordExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: java.net.URL = field): simpleRecordExample = {
+        |  private def copy(field: java.net.URL = field): simpleRecordExample = {
         |    new simpleRecordExample(field)
         |  }
         |  def withField(field: java.net.URL): simpleRecordExample = {
@@ -234,7 +234,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
         |  override def toString: String = {
         |    "growableAddOneField(" + field + ")"
         |  }
-        |  private[this] def copy(field: Int = field): growableAddOneField = {
+        |  private def copy(field: Int = field): growableAddOneField = {
         |    new growableAddOneField(field)
         |  }
         |  def withField(field: Int): growableAddOneField = {
@@ -267,7 +267,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
         |  override def toString: String = {
         |    "Foo(" + x + ", " + y + ")"
         |  }
-        |  private[this] def copy(x: Option[Int] = x, y: Vector[Int] = y): Foo = {
+        |  private def copy(x: Option[Int] = x, y: Vector[Int] = y): Foo = {
         |    new Foo(x, y)
         |  }
         |  def withX(x: Option[Int]): Foo = {
@@ -310,7 +310,7 @@ class JsonScalaCodeGenSpec extends GCodeGenSpec("Scala") {
   override def toString: String = {
     "primitiveTypesExample2(" + smallBoolean + ", " + bigBoolean + ")"
   }
-  private[this] def copy(smallBoolean: Boolean = smallBoolean, bigBoolean: Boolean = bigBoolean): primitiveTypesExample2 = {
+  private def copy(smallBoolean: Boolean = smallBoolean, bigBoolean: Boolean = bigBoolean): primitiveTypesExample2 = {
     new primitiveTypesExample2(smallBoolean, bigBoolean)
   }
   def withSmallBoolean(smallBoolean: Boolean): primitiveTypesExample2 = {
@@ -342,7 +342,7 @@ object primitiveTypesExample2 {
         |  override def toString: String = {
         |    "modifierExample(" + field + ")"
         |  }
-        |  private[this] def copy(field: Int = field): modifierExample = {
+        |  private def copy(field: Int = field): modifierExample = {
         |    new modifierExample(field)
         |  }
         |  def withField(field: Int): modifierExample = {
@@ -380,7 +380,7 @@ object primitiveTypesExample2 {
         |  override def toString: String = {
         |    super.toString // Avoid evaluating lazy members in toString to avoid circularity.
         |  }
-        |  private[this] def copy(simpleInteger: Int = simpleInteger, lazyInteger: => Int = lazyInteger, arrayInteger: Vector[Int] = arrayInteger, optionInteger: Option[Int] = optionInteger, lazyArrayInteger: => Vector[Int] = lazyArrayInteger, lazyOptionInteger: => Option[Int] = lazyOptionInteger): primitiveTypesExample = {
+        |  private def copy(simpleInteger: Int = simpleInteger, lazyInteger: => Int = lazyInteger, arrayInteger: Vector[Int] = arrayInteger, optionInteger: Option[Int] = optionInteger, lazyArrayInteger: => Vector[Int] = lazyArrayInteger, lazyOptionInteger: => Option[Int] = lazyOptionInteger): primitiveTypesExample = {
         |    new primitiveTypesExample(simpleInteger, lazyInteger, arrayInteger, optionInteger, lazyArrayInteger, lazyOptionInteger)
         |  }
         |  def withSimpleInteger(simpleInteger: Int): primitiveTypesExample = {
@@ -437,7 +437,7 @@ object primitiveTypesExample2 {
         |  override def toString: String = {
         |    "primitiveTypesNoLazyExample(" + simpleInteger + ", " + arrayInteger + ")"
         |  }
-        |  private[this] def copy(simpleInteger: Int = simpleInteger, arrayInteger: Vector[Int] = arrayInteger): primitiveTypesNoLazyExample = {
+        |  private def copy(simpleInteger: Int = simpleInteger, arrayInteger: Vector[Int] = arrayInteger): primitiveTypesNoLazyExample = {
         |    new primitiveTypesNoLazyExample(simpleInteger, arrayInteger)
         |  }
         |  def withSimpleInteger(simpleInteger: Int): primitiveTypesNoLazyExample = {
