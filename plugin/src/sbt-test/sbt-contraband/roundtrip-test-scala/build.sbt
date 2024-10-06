@@ -5,6 +5,11 @@ lazy val root = (project in file(".")).
   settings(
     name := "example",
     scalaVersion := "2.13.15",
+    TaskKey[Unit]("check") := {
+      val dir = (Compile / generateContrabands / sourceManaged).value
+      val src = dir / "com" / "example" / "codec" / "CustomJsonProtocol.scala"
+      assert(src.isFile)
+    },
     libraryDependencies += "com.eed3si9n" %% "sjson-new-scalajson" % contrabandSjsonNewVersion.value
     // scalacOptions += "-Xlog-implicits"
   )
