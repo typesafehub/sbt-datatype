@@ -4,7 +4,7 @@ lazy val root = (project in file(".")).
   enablePlugins(ContrabandPlugin, JsonCodecPlugin).
   settings(
     name := "example",
-    scalaVersion := "2.13.0",
+    scalaVersion := "2.13.15",
     Compile / generateContrabands / contrabandFormatsForType := { tpe =>
       val substitutions = Map("java.io.File" -> "com.foo.FileFormats")
       val name = tpe.removeTypeParameters.name
