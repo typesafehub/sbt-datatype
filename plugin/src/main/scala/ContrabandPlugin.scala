@@ -108,7 +108,14 @@ object ContrabandPlugin extends AutoPlugin {
     )
 
   override def globalSettings = Seq(
-    contrabandSjsonNewVersion := "0.9.0"
+    contrabandSjsonNewVersion := {
+      scalaBinaryVersion.value match {
+        case "3" =>
+          "0.13.1"
+        case _ =>
+          "0.9.0"
+      }
+    }
   )
 }
 
