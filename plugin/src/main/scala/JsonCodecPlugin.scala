@@ -1,6 +1,6 @@
 package sbt.contraband
 
-import sbt._
+import sbt.{ given, _ }
 import Keys._
 
 object JsonCodecPlugin extends AutoPlugin {

@@ -1,7 +1,7 @@
 package sbt.contraband
 
 import sbt.Keys._
-import sbt._
+import sbt.{ given, _ }
 import sbt.contraband.ast._
 import sbt.contraband.parser.{ JsonParser, SchemaParser }
 

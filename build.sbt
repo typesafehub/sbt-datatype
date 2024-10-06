@@ -64,12 +64,12 @@ lazy val plugin = (project in file("plugin"))
       scriptedLaunchOpts.value ++
         Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
     },
-    crossScalaVersions := Seq(scala212),
+    crossScalaVersions := Seq(scala212, scala3),
     pluginCrossBuild / sbtVersion := {
       scalaBinaryVersion.value match {
         case "2.13" => "1.2.8"
         case "2.12" => "1.2.8" // set minimum sbt version
-        case _      => "1.2.8"
+        case _      => "2.0.0-M2"
       }
     },
     publishLocal := (publishLocal dependsOn (library / publishLocal)).value,
