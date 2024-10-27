@@ -111,9 +111,9 @@ object ContrabandPlugin extends AutoPlugin {
     contrabandSjsonNewVersion := {
       scalaBinaryVersion.value match {
         case "3" =>
-          "0.13.1"
+          "0.14.0-M1"
         case _ =>
-          "0.9.0"
+          "0.10.1"
       }
     }
   )
@@ -131,6 +131,7 @@ object Generate {
       scalaFileNames: Any => File,
       scalaSealInterface: Boolean,
       scalaPrivateConstructor: Boolean,
+      scalaVersion: String,
       wrapOption: Boolean,
       codecParents: List[String],
       instantiateJavaLazy: String => String,
@@ -158,9 +159,18 @@ object Generate {
       scalaFileNames,
       scalaSealInterface,
       scalaPrivateConstructor,
-      wrapOption
+      wrapOption,
+      scalaVersion,
     )
-    val jsonFormatsGenerator = new CodecCodeGen(codecParents, instantiateJavaLazy, javaOption, scalaArray, formatsForType, input)
+    val jsonFormatsGenerator = new CodecCodeGen(
+      codecParents = codecParents,
+      instantiateJavaLazy = instantiateJavaLazy,
+      javaOption = javaOption,
+      scalaArray = scalaArray,
+      formatsForType = formatsForType,
+      includedSchemas = input,
+      scalaVersion = scalaVersion,
+    )
 
     val datatypes =
       if (createDatatypes) {
@@ -234,6 +244,7 @@ object Generate {
       scalaFileNames,
       scalaSealInterface,
       scalaPrivateConstructor,
+      scalaVersion,
       wrapOption,
       codecParents,
       instantiateJavaLazy,

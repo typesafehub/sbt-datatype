@@ -20,7 +20,8 @@ class CodecCodeGen(
     javaOption: String,
     scalaArray: String,
     formatsForType: ast.Type => List[String],
-    includedSchemas: List[Document]
+    includedSchemas: List[Document],
+    scalaVersion: String,
 ) extends CodeGenerator {
   import CodecCodeGen._
 
@@ -35,6 +36,8 @@ class CodecCodeGen(
     override def enterMultilineJavadoc(s: String) = s == "/**"
     override def exitMultilineJavadoc(s: String) = s == "*/"
   }
+
+  private def intersection: String = ScalaCodeGen.intersection(scalaVersion)
 
   override def generateEnum(s: Document, e: EnumTypeDefinition): ListMap[File, String] = {
     val fqn = fullyQualifiedName(e)
@@ -168,7 +171,7 @@ class CodecCodeGen(
           val rfs = getAllRequiredFormats(s, i).distinct filter { _ != fmt }
           val selfType = rfs match {
             case Nil => ""
-            case fms => fms.mkString("self: ", " with ", " =>")
+            case fms => fms.mkString("self: ", intersection, " =>")
           }
           val typeFieldName = (toCodecTypeField(i.directives) orElse toCodecTypeField(s)).getOrElse("type")
           val flatUnionFormat =
@@ -301,7 +304,7 @@ class CodecCodeGen(
   private def makeSelfType(s: Document, d: TypeDefinition): String =
     getRequiredFormats(s, d).distinct match {
       case Nil => ""
-      case fms => fms.mkString("self: ", " with ", " =>")
+      case fms => fms.mkString("self: ", intersection, " =>")
     }
 
   private def genPackage(s: Document): String =
