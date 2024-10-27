@@ -386,6 +386,7 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
     )
   }
 
+  def scalaVersion: String = "3.5.1"
   def mkScalaCodeGen: ScalaCodeGen =
     new ScalaCodeGen(
       javaLazy,
@@ -395,7 +396,8 @@ object GraphQLScalaCodeGenSpec extends BasicTestSuite with EqualLines {
       genFileName,
       scalaSealProtocols = true,
       scalaPrivateConstructor = true,
-      wrapOption = true
+      wrapOption = true,
+      scalaVersion = scalaVersion,
     )
   val javaLazy = "com.example.Lazy"
   val outputFile = new File("output.scala")

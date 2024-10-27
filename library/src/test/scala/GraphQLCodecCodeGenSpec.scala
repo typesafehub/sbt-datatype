@@ -22,7 +22,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |
         |import _root_.sjsonnew.JsonFormat
         |
-        |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol with generated.ChildTypeFormats =>
+        |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
         |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
@@ -78,7 +78,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |
         |import _root_.sjsonnew.JsonFormat
         |
-        |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol with generated.ChildTypeFormats =>
+        |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
         |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
@@ -136,7 +136,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |
         |import _root_.sjsonnew.JsonFormat
         |
-        |trait InterfaceExampleFormats { self: generated.TestItemDetailFormats with com.example.StatusFormats with sjsonnew.BasicJsonProtocol with generated.ChildTypeFormats =>
+        |trait InterfaceExampleFormats { self: generated.TestItemDetailFormats & com.example.StatusFormats & sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
         |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
@@ -153,7 +153,16 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
       case other =>
         CodecCodeGen.formatsForType(other)
     }
+  val scalaVersion = "3.5.1"
 
   def mkCodecCodeGen: CodecCodeGen =
-    new CodecCodeGen(codecParents, instantiateJavaLazy, javaOption, scalaArray, formatsForType, Nil)
+    new CodecCodeGen(
+      codecParents = codecParents,
+      instantiateJavaLazy = instantiateJavaLazy,
+      javaOption = javaOption,
+      scalaArray = scalaArray,
+      formatsForType = formatsForType,
+      includedSchemas = Nil,
+      scalaVersion = scalaVersion,
+    )
 }

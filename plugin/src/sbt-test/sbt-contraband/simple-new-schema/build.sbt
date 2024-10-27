@@ -1,4 +1,3 @@
-scalaVersion := "2.13.15"
+scalaVersion := "3.5.1"
 name := "example"
-
 enablePlugins(ContrabandPlugin, JsonCodecPlugin)

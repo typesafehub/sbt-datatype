@@ -13,6 +13,7 @@ class GraphQLMixedCodeGenSpec extends AnyFlatSpec with Matchers with Inside with
   "generate(Record)" should "handle mixed Java-Scala inheritance" in {
     val Success(ast) = SchemaParser.parse(mixedExample)
     // println(ast)
+    val scalaVersion = "2.13.15"
     val gen = new MixedCodeGen(
       javaLazy,
       CodeGen.javaOptional,
@@ -21,7 +22,8 @@ class GraphQLMixedCodeGenSpec extends AnyFlatSpec with Matchers with Inside with
       genFileName,
       scalaSealProtocols = true,
       scalaPrivateConstructor = true,
-      wrapOption = true
+      wrapOption = true,
+      scalaVersion = scalaVersion,
     )
     val code = gen.generate(ast)
 

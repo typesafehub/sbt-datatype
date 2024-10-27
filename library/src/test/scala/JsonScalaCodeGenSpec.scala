@@ -466,6 +466,7 @@ object primitiveTypesExample2 {
     code.head._2.withoutEmptyLines should equalLines(completeExampleCodeScala.withoutEmptyLines)
   }
 
+  def scalaVersion: String = "2.13.15"
   def mkScalaCodeGen: ScalaCodeGen =
     new ScalaCodeGen(
       javaLazy,
@@ -475,7 +476,8 @@ object primitiveTypesExample2 {
       genFileName,
       scalaSealProtocols = true,
       scalaPrivateConstructor = true,
-      wrapOption = true
+      wrapOption = true,
+      scalaVersion = scalaVersion,
     )
   val javaLazy = "com.example.Lazy"
   val outputFile = new File("output.scala")

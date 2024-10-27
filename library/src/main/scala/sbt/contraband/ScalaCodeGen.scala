@@ -17,7 +17,8 @@ class ScalaCodeGen(
     genFile: Any => File,
     scalaSealProtocols: Boolean,
     scalaPrivateConstructor: Boolean,
-    wrapOption: Boolean
+    wrapOption: Boolean,
+    scalaVersion: String,
 ) extends CodeGenerator {
 
   implicit object indentationConfiguration extends IndentationConfiguration {
@@ -481,4 +482,10 @@ class ScalaCodeGen(
                 |}""".stripMargin)
     } mkString (EOL + EOL)
   }
+}
+
+object ScalaCodeGen {
+  def intersection(scalaVersion: String): String =
+    if (scalaVersion.startsWith("2.")) " with "
+    else " & "
 }
