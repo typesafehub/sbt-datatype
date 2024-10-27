@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / version := "0.5.3-SNAPSHOT"
+ThisBuild / version := "0.7.0-SNAPSHOT"
 ThisBuild / organization := "org.scala-sbt"
 ThisBuild / crossScalaVersions := Seq(scala213, scala212, scala3)
 ThisBuild / scalaVersion := scala212
@@ -27,6 +27,7 @@ ThisBuild / scalacOptions ++= {
       Nil
   }
 }
+ThisBuild / publishMavenStyle := true
 
 lazy val root = (project in file("."))
   .enablePlugins(TravisSitePlugin)
@@ -36,6 +37,7 @@ lazy val root = (project in file("."))
     siteGithubRepo := "sbt/contraband",
     siteEmail := { "eed3si9n" + "@" + "gmail.com" },
     publish / skip := true,
+    crossScalaVersions := Nil,
   )
 
 lazy val library = (project in file("library"))
