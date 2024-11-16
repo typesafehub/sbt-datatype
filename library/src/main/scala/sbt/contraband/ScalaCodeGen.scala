@@ -488,4 +488,8 @@ object ScalaCodeGen {
   def intersection(scalaVersion: String): String =
     if (scalaVersion.startsWith("2.")) " with "
     else " & "
+
+  def typeClassInstance(scalaVersion: String): String =
+    if (scalaVersion.startsWith("2.")) "implicit lazy val"
+    else "given"
 }

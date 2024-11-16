@@ -38,6 +38,7 @@ class CodecCodeGen(
   }
 
   private def intersection: String = ScalaCodeGen.intersection(scalaVersion)
+  private def typeClassInstance: String = ScalaCodeGen.typeClassInstance(scalaVersion)
 
   override def generateEnum(s: Document, e: EnumTypeDefinition): ListMap[File, String] = {
     val fqn = fullyQualifiedName(e)
@@ -66,7 +67,7 @@ class CodecCodeGen(
          |import _root_.sjsonnew.{ Unbuilder, Builder, JsonFormat, deserializationError } 
          |
          |trait ${e.name.capitalize}Formats { $selfType
-         |  implicit lazy val ${e.name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
+         |  ${typeClassInstance} ${e.name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
          |    override def read[J](__jsOpt: Option[J], unbuilder: Unbuilder[J]): $fqn = {
          |      __jsOpt match {
          |        case Some(__js) =>
@@ -120,7 +121,7 @@ class CodecCodeGen(
          |import _root_.sjsonnew.{ Unbuilder, Builder, JsonFormat, deserializationError } 
          |
          |trait ${r.name.capitalize}Formats { $selfType
-         |  implicit lazy val ${r.name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
+         |  ${typeClassInstance} ${r.name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
          |    override def read[J](__jsOpt: Option[J], unbuilder: Unbuilder[J]): $fqn = {
          |      __jsOpt match {
          |        case Some(__js) =>
@@ -156,7 +157,7 @@ class CodecCodeGen(
              |import _root_.sjsonnew.{ deserializationError, serializationError, Builder, JsonFormat, Unbuilder } 
              |
              |trait ${name.capitalize}Formats {
-             |  implicit lazy val ${name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
+             |  ${typeClassInstance} ${name}Format: JsonFormat[$fqn] = new JsonFormat[$fqn] {
              |    override def read[J](__jsOpt: Option[J], unbuilder: Unbuilder[J]): $fqn = {
              |      deserializationError("No known implementation of ${i.name}.")
              |    }
@@ -181,7 +182,7 @@ class CodecCodeGen(
              |import _root_.sjsonnew.JsonFormat 
              |
              |trait ${name.capitalize}Formats { $selfType
-             |  implicit lazy val ${name}Format: JsonFormat[$fqn] = $flatUnionFormat
+             |  ${typeClassInstance} ${name}Format: JsonFormat[$fqn] = $flatUnionFormat
              |}""".stripMargin
 
       }
