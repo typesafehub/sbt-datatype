@@ -23,7 +23,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |import _root_.sjsonnew.JsonFormat
         |
         |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
-        |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
+        |  given InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
 
@@ -39,7 +39,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |import _root_.sjsonnew.{ Unbuilder, Builder, JsonFormat, deserializationError }
         |
         |trait ChildTypeFormats { self: sjsonnew.BasicJsonProtocol =>
-        |  implicit lazy val ChildTypeFormat: JsonFormat[com.example.ChildType] = new JsonFormat[com.example.ChildType] {
+        |  given ChildTypeFormat: JsonFormat[com.example.ChildType] = new JsonFormat[com.example.ChildType] {
         |    override def read[J](__jsOpt: Option[J], unbuilder: Unbuilder[J]): com.example.ChildType = {
         |      __jsOpt match {
         |        case Some(__js) =>
@@ -79,7 +79,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |import _root_.sjsonnew.JsonFormat
         |
         |trait InterfaceExampleFormats { self: sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
-        |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
+        |  given InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
 
@@ -97,7 +97,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |import _root_.sjsonnew.{ Unbuilder, Builder, JsonFormat, deserializationError }
         |
         |trait ChildTypeFormats { self: sjsonnew.BasicJsonProtocol =>
-        |  implicit lazy val ChildTypeFormat: JsonFormat[com.example.ChildType] = new JsonFormat[com.example.ChildType] {
+        |  given ChildTypeFormat: JsonFormat[com.example.ChildType] = new JsonFormat[com.example.ChildType] {
         |    override def read[J](__jsOpt: Option[J], unbuilder: Unbuilder[J]): com.example.ChildType = {
         |      __jsOpt match {
         |        case Some(__js) =>
@@ -137,7 +137,7 @@ object GraphQLCodecCodeGenSpec extends BasicTestSuite with EqualLines {
         |import _root_.sjsonnew.JsonFormat
         |
         |trait InterfaceExampleFormats { self: generated.TestItemDetailFormats & com.example.StatusFormats & sjsonnew.BasicJsonProtocol & generated.ChildTypeFormats =>
-        |  implicit lazy val InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
+        |  given InterfaceExampleFormat: JsonFormat[com.example.InterfaceExample] = flatUnionFormat1[com.example.InterfaceExample, com.example.ChildType]("type")
         |}""".stripMargin.stripSpace
     )
   }
