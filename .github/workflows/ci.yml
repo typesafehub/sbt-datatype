@@ -22,6 +22,7 @@ jobs:
         distribution: temurin
         java-version: 11
         cache: sbt
+    - uses: sbt/setup-sbt@v1
     - if: ${{ matrix.jobtype == 1 }}
       shell: bash
       run: sbt -v "++2.13.x" library/test
