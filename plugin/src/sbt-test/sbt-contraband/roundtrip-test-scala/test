@@ -2,6 +2,6 @@
 
 > compile
 
-> check
+$ exists target/**/src_managed/main/com/example/codec/CustomJsonProtocol.scala
 
 > run

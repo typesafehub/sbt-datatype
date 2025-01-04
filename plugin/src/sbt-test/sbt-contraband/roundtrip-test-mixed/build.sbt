@@ -11,11 +11,6 @@ lazy val root = (project in file(".")).
       if (substitutions contains name) substitutions(name) :: Nil
       else ((Compile / generateContrabands / contrabandFormatsForType).value)(tpe)
     },
-    TaskKey[Unit]("check") := {
-      val dir = (Compile / generateContrabands / sourceManaged).value
-      val src = dir / "generated" / "CustomProtocol.scala"
-      assert(src.isFile)
-    },
     libraryDependencies += "com.eed3si9n" %% "sjson-new-scalajson" % contrabandSjsonNewVersion.value
     // scalacOptions += "-Xlog-implicits"
   )

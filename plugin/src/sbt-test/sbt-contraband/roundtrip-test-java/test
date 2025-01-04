@@ -2,6 +2,6 @@
 
 > compile
 
-> check
+$ exists target/**/src_managed/main/generated/CustomProtocol.scala
 
 > run
